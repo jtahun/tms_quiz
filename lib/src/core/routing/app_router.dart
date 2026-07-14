@@ -6,8 +6,8 @@ import 'package:tms_quiz/src/core/routing/app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: LoginRoute.page, initial: true),
+        AutoRoute(page: LoginRoute.page),// initial: true),
         AutoRoute(page: SignupRoute.page),
-        AutoRoute(page: WelcomeRoute.page),
+        AutoRoute(page: WelcomeRoute.page, initial: true),
       ];
 }
