@@ -16,12 +16,14 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: outline == true ? null : const  Color(0xFF076A67),
+      borderRadius: BorderRadius.circular(20),
       child: InkWell(
         onTap:onPressed,
+        borderRadius: BorderRadius.circular(20),
         child: Container(
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: outline == true ? null : const  Color(0xFF076A67),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: const Color(0xFF076A67),

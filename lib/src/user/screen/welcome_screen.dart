@@ -36,22 +36,22 @@ class WelcomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: const[
-                  Text(
+                  children: [
+                  const Text(
                     'Log in or Sign up',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(height: 16),
-                  Text(
+                  const SizedBox(height: 16),
+                  const Text(
                     'Login or create an account to make quiz, take part in challenge and win',
                     style:TextStyle(fontSize: 16),
                   ),
-                  Button(text:'Log in'),
-                  SizedBox(height: 16),
-                  Button(text:'Create an account', outline: true,)
+                  Button(text:'Log in',onPressed:() {},),
+                  const SizedBox(height: 16),
+                  Button(text:'Create an account', outline: true, onPressed: () {},)
                 ],),
               )
             ),
