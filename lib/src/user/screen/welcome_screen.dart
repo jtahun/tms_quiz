@@ -1,10 +1,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:tms_quiz/src/core/routing/app_router.gr.dart';
 import 'package:tms_quiz/src/core/widgets/button.dart';
 
 @RoutePage()
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
+
+  void _navigateLogin(BuildContext context){
+    AutoRouter.of(context).push(const LoginRoute());
+  }
+
+  void _navigateSignup(BuildContext context){
+    AutoRouter.of(context).push(const SignupRoute());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +58,12 @@ class WelcomeScreen extends StatelessWidget {
                     'Login or create an account to make quiz, take part in challenge and win',
                     style:TextStyle(fontSize: 16),
                   ),
-                  Button(text:'Log in',onPressed:() {},),
+                  Button(text:'Log in',onPressed:() {
+                    _navigateLogin(context);
+                  },),
                   const SizedBox(height: 16),
-                  Button(text:'Create an account', outline: true, onPressed: () {},)
+                  Button(text:'Create an account', outline: true, onPressed: ()  =>_navigateSignup(context),
+                  )
                 ],),
               )
             ),
