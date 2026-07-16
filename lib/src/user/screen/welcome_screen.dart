@@ -12,7 +12,7 @@ class WelcomeScreen extends StatelessWidget {
   }
 
   void _navigateSignup(BuildContext context){
-    AutoRouter.of(context).push(const SignupRoute());
+    AutoRouter.of(context).push(SignupRoute());
   }
 
   @override

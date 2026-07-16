@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 class OwnTextField extends StatelessWidget {
   final String? label;
   final String? placeholder;
+  final TextEditingController? controller;
 
 
   const OwnTextField({
     super.key,
     this.label,
-    this.placeholder
+    this.placeholder,
+    this.controller
     });
 
   @override
@@ -20,6 +22,7 @@ class OwnTextField extends StatelessWidget {
         if(label != null) Text(label!),
         if (label != null) const SizedBox(height: 4,),
         TextFormField(
+          controller: controller,
           cursorColor: const Color(0xFF076A67),
           decoration: InputDecoration(
             hintText: placeholder,

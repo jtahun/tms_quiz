@@ -1,12 +1,40 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:tms_quiz/src/core/routing/app_router.gr.dart';
 import 'package:tms_quiz/src/core/widgets/app_bar.dart';
 import 'package:tms_quiz/src/core/widgets/button.dart';
 import 'package:tms_quiz/src/core/widgets/text_field.dart';
+import 'package:tms_quiz/src/user/state/user_state.dart';
 
 @RoutePage()
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
+
   const SignupScreen({super.key});
+
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  final _emailController = TextEditingController();
+
+  final _passwordController = TextEditingController();
+
+  final _confirmPasswordController = TextEditingController();
+
+  final _nameController = TextEditingController();
+
+  void _navigateLogin(BuildContext context){
+    AutoRouter.of(context).replace(const LoginRoute());
+  }
+
+  void _signup(){
+    UserState.of(context).notifier!.createAccount(
+      email: _emailController.text,
+      password: _passwordController.text,
+      name: _nameController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +44,14 @@ class SignupScreen extends StatelessWidget {
         text: 'Quizfire',
         actions: [
           TextButton(
-            onPressed: (){},
+            onPressed: () => _navigateLogin(context),
             child: const Text('Log in'),
             ),
         ],
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
-        children: const [
+        children:  [
           Text(
             'Create new account',
             style: TextStyle(
@@ -32,18 +60,18 @@ class SignupScreen extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 48,),
+          const SizedBox(height: 48,),
           OwnTextField(
-            label: 'Email', placeholder: 'Enter your email',
+            controller: _emailController,label: 'Email', placeholder: 'Enter your email',
           ),
-          SizedBox(height: 16,),
-          OwnTextField(label: 'Password', placeholder: 'Enter your password',),
-          SizedBox(height: 16,),
-          OwnTextField(label: 'Confirm password', placeholder: 'Enter your password again',),
-          SizedBox(height: 16,),
-          OwnTextField(label: 'Name', placeholder: 'Enter your name',),
-          SizedBox(height: 32,),
-          Button(text: 'Sign up'),
+          const SizedBox(height: 16,),
+          OwnTextField(controller: _passwordController, label: 'Password', placeholder: 'Enter your password',),
+          const SizedBox(height: 16,),
+          OwnTextField(controller: _confirmPasswordController, label: 'Confirm password', placeholder: 'Enter your password again',),
+          const SizedBox(height: 16,),
+          OwnTextField(controller: _nameController, label: 'Name', placeholder: 'Enter your name',),
+          const SizedBox(height: 32,),
+          Button(text: 'Sign up', onPressed: _signup),
         ],),
     );
   }
