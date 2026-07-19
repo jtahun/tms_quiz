@@ -20,10 +20,26 @@ class QuizScreen extends StatelessWidget {
       appBar: OwnAppBar(
         text: quiz.title,
       ) ,
-      body: ListView(
-        children: [
-          QuestionView(question: quiz.questions.first),
-        ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              //QuestionView(question: quiz.questions.first),
+              Expanded(
+                child: PageView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: quiz.questions.map((question) => QuestionView(
+                    question: question,
+                    onAnswerSelected: (index) {
+                      // Handle answer selection
+                    },
+                  )).toList(),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
       
     );

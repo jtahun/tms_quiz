@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tms_quiz/src/core/constants/theme_constants.dart';
 
 class Button extends StatelessWidget {
   final String text;
@@ -15,7 +16,9 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: outline == true ? null : const  Color(0xFF076A67),
+      color: outline == true ? null : ThemeConstants.primaryColor.withOpacity(
+        onPressed == null ? 0.3 : 1.0
+      ),
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
         onTap:onPressed,
@@ -25,7 +28,7 @@ class Button extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: const Color(0xFF076A67),
+              color: ThemeConstants.primaryColor,
               width: 2 
             )
           ),
@@ -33,7 +36,7 @@ class Button extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              color: outline ? const Color(0xFF076A67) : Colors.white,
+              color: outline ? ThemeConstants.primaryColor : Colors.white,
               fontSize:16,
         
             )
