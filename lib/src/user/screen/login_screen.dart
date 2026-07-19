@@ -25,11 +25,22 @@ class _LoginScreenState extends State<LoginScreen> {
     AutoRouter.of(context).replace( SignupRoute());
   }
 
-  void _login(){
-    UserState.of(context).notifier!.login(
+  void _login() async {
+    try{
+      await UserState.of(context).notifier!.login(
       email: _emailController.text,
       password: _passwordController.text,    
       );
+    }catch(error){
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            error.toString(),
+            ),
+          backgroundColor: Colors.red,
+          ));
+    }
+
   }
 
   @override
@@ -61,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
             controller: _emailController, label: 'Email', placeholder: 'Enter your email',
           ),
           const SizedBox(height: 16,),
-          OwnTextField(controller: _passwordController,  label: 'Password', placeholder: 'Enter your password',),          
+          OwnTextField(controller: _passwordController,  label: 'Password', placeholder: 'Enter your password', obscureText: true,),          
           const SizedBox(height: 32,),
           Button(text: 'Log in', onPressed: _login,),
         ],),

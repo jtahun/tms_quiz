@@ -20,10 +20,10 @@ class DefaultFirebaseOptions {
       return web;
     }
     switch (defaultTargetPlatform) {
-      case TargetPlatform.android:
-        return android;
-      case TargetPlatform.iOS:
-        return ios;
+      //case TargetPlatform.android:
+        //return android;
+      //case TargetPlatform.iOS:
+        //return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -64,15 +64,16 @@ class DefaultFirebaseOptions {
     storageBucket: 'tms-quiz.appspot.com',
   );*/
 
-  static const FirebaseOptions android = FirebaseOptions(
+   
+  /*static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAeEGcxvDnewPNanFNvfQgFRmcNt6ocyi4',
     appId: '1:925203969606:android:4c717ca7dfc3490574bc47',
     messagingSenderId: '925203969606',
     projectId: 'tms-quiz',
     storageBucket: 'tms-quiz.appspot.com',
-  );
+  );*/
 
-  static const FirebaseOptions ios = FirebaseOptions(
+  /*static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBGVhjULCyD7v4nnMmUSKo2i_t1la5Ip90',
     appId: '1:925203969606:ios:0604b83f30638fb774bc47',
     messagingSenderId: '925203969606',
@@ -80,7 +81,7 @@ class DefaultFirebaseOptions {
     storageBucket: 'tms-quiz.appspot.com',
     iosClientId: '925203969606-4l477eqr1otlrdc8h8u7p230govre4b3.apps.googleusercontent.com',
     iosBundleId: 'com.tms.flutter.quiz.tmsQuiz',
-  );  
+  );  */
 }
 
 

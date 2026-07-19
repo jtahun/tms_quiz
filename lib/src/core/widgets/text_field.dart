@@ -1,17 +1,19 @@
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OwnTextField extends StatelessWidget {
   final String? label;
   final String? placeholder;
   final TextEditingController? controller;
+  final bool obscureText;
 
 
   const OwnTextField({
     super.key,
     this.label,
     this.placeholder,
-    this.controller
+    this.controller,
+    this.obscureText = false,
     });
 
   @override
@@ -24,6 +26,7 @@ class OwnTextField extends StatelessWidget {
         TextFormField(
           controller: controller,
           cursorColor: const Color(0xFF076A67),
+          obscureText: obscureText,
           decoration: InputDecoration(
             hintText: placeholder,
             contentPadding: const EdgeInsets.symmetric(horizontal: 30,vertical: 20,),

@@ -28,12 +28,22 @@ class _SignupScreenState extends State<SignupScreen> {
     AutoRouter.of(context).replace(const LoginRoute());
   }
 
-  void _signup(){
-    UserState.of(context).notifier!.createAccount(
+  void _signup() async {
+    try{
+      await UserState.of(context).notifier!.createAccount(
       email: _emailController.text,
       password: _passwordController.text,
       name: _nameController.text,
     );
+    }catch(error){
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            error.toString(),
+            ),
+          backgroundColor: Colors.red,
+          ));
+    }
   }
 
   @override

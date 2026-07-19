@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:tms_quiz/src/user/state/add_quizes.dart'; /// ----------------------------
 
 class UserNotifier extends ChangeNotifier {
   Future<void> createAccount({
@@ -16,17 +17,25 @@ class UserNotifier extends ChangeNotifier {
     required String password,
   }) async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+   
+    //await addQuizzes(); 
+    print(FirebaseAuth.instance.currentUser?.uid); 
   }
 
-  Future<void> logOut() async {}
+  Future<void> logOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
+  bool get isAuthenticated => FirebaseAuth.instance.currentUser != null;
 }
 
 class UserState extends InheritedNotifier<UserNotifier> {
-  UserState({
+  const UserState({
     super.key,
     required super.child,
+    required UserNotifier notifier,
   }) : super(
-          notifier: UserNotifier(),
+          notifier: notifier,
         );
 
   static UserState of(BuildContext context) {
