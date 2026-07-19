@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:tms_quiz/src/core/constants/theme_constants.dart';
 
 class OwnAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? text;
@@ -22,7 +23,7 @@ class OwnAppBar extends StatelessWidget implements PreferredSizeWidget {
         color: Colors.black,
       )),
       centerTitle: true,
-      backgroundColor: Color(0xFFEFEFEF),
+      backgroundColor: ThemeConstants.backgroundColor,
       elevation: 0,
       scrolledUnderElevation: 5,
       //leading: !AutoRouter.of(context).canPop() ? null : GestureDetector(

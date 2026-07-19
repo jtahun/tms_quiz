@@ -11,8 +11,8 @@ class QuizzesNotifier extends ChangeNotifier {
 
   void loadQuizzes() async {
     final collection = await FirebaseFirestore.instance.collection('quizzes').get();
-    notifyListeners();
-    
+    quizzes = collection.docs.map((e) => Quiz.fromJson(e.data())).toList();
+    notifyListeners();    
   }
 }
 

@@ -18,5 +18,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: QuizzesRoute.page, initial: true, guards: [
           AuthGuard(userNotifier: userNotifier),
         ]),
+        AutoRoute(page: QuizRoute.page),
       ];
 }

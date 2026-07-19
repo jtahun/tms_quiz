@@ -16,6 +16,7 @@ class QuizPreview extends StatelessWidget {
 Widget build(BuildContext context) {
   return GestureDetector(
     onTap: onTap,
+    behavior: HitTestBehavior.opaque,
     child: Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
