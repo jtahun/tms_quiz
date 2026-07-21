@@ -20,8 +20,8 @@ class DefaultFirebaseOptions {
       return web;
     }
     switch (defaultTargetPlatform) {
-      //case TargetPlatform.android:
-        //return android;
+      case TargetPlatform.android:
+        return android;
       //case TargetPlatform.iOS:
         //return ios;
       case TargetPlatform.macOS:
@@ -52,7 +52,15 @@ class DefaultFirebaseOptions {
     messagingSenderId: '718146572376',
     projectId: 'vocab-trainer-eng',
     authDomain: 'vocab-trainer-eng.firebaseapp.com',
-    storageBucket: 'tocab-trainer-eng.firebasestorage.app',
+    storageBucket: 'vocab-trainer-eng.firebasestorage.app',
+  );
+
+   static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyD1Eima8xlw6LuS_zNNrA8ND6hzTKULCZA',
+    appId: '1:718146572376:android:c38e437cd22f40eaf37a2d',
+    messagingSenderId: '718146572376',
+    projectId: 'vocab-trainer-eng',
+    storageBucket: 'vocab-trainer-eng.firebasestorage.app',
   );
   
   /*static const FirebaseOptions web = FirebaseOptions(
