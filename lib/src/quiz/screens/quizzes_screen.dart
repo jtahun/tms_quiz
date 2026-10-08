@@ -1,4 +1,3 @@
-
 //import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -18,45 +17,44 @@ class QuizzesScreen extends StatelessWidget {
     AutoRouter.of(context).push(QuizRoute(quiz: quiz));
   }
 
-  void _logOut(BuildContext context) async{
+  void _logOut(BuildContext context) async {
     await UserState.of(context).notifier!.logOut();
-    if(!context.mounted) return;
+    if (!context.mounted) return;
     AutoRouter.of(context).replace(const WelcomeRoute());
   }
 
   @override
   Widget build(BuildContext context) {
+    final quizzes = QuizzesState.of(context).quizzes;
 
-  final quizzes = QuizzesState.of(context).quizzes;
+    debugPrint('QuizzesScreen BUILD: ${quizzes.length}');
 
-  debugPrint('QuizzesScreen BUILD: ${quizzes.length}');
-
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: ThemeConstants.backgroundColor,
       appBar: OwnAppBar(
         text: 'Quizzes',
         actions: [
           TextButton(
             onPressed: () => _logOut(context),
-            child: const Text('Log out'),      
+            child: const Text('Log out'),
           ),
         ],
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
-        children: 
-          QuizzesState.of(context).quizzes.map((quiz) => Padding(
-            padding: const EdgeInsets.only(bottom : 10),
-            child: QuizPreview(
-              title: quiz.title, 
-              questions: quiz.questions.length, 
-              onTap: () => _navigageToQuiz(context, quiz),
+        children: QuizzesState.of(context).quizzes
+            .map(
+              (quiz) => Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: QuizPreview(
+                  title: quiz.title,
+                  questions: quiz.questions.length,
+                  onTap: () => _navigageToQuiz(context, quiz),
+                ),
               ),
             )
-          ).toList(),
-
-        
-      )
+            .toList(),
+      ),
     );
   }
 }

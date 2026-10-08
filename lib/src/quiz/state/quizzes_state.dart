@@ -4,17 +4,19 @@ import 'package:tms_quiz/src/quiz/models/quiz.dart';
 
 class QuizzesNotifier extends ChangeNotifier {
   //QuizzesNotifier(){
-    //loadQuizzes();
+  //loadQuizzes();
   //}
 
   List<Quiz> quizzes = [];
 
   Future<void> loadQuizzes() async {
-    final collection = await FirebaseFirestore.instance.collection('quizzes').get();
+    final collection = await FirebaseFirestore.instance
+        .collection('quizzes')
+        .get();
     quizzes = collection.docs.map((e) => Quiz.fromJson(e.data())).toList();
 
-    debugPrint('Firebase: загружено ${quizzes.length} квизов');    
-    notifyListeners();    
+    debugPrint('Firebase: загружено ${quizzes.length} квизов');
+    notifyListeners();
   }
 }
 
@@ -26,8 +28,7 @@ class QuizzesState extends InheritedNotifier<QuizzesNotifier> {
   }) : super(notifier: notifier);
 
   static QuizzesNotifier of(BuildContext context) {
-    final result =
-        context.dependOnInheritedWidgetOfExactType<QuizzesState>();
+    final result = context.dependOnInheritedWidgetOfExactType<QuizzesState>();
 
     if (result == null) {
       throw Exception('QuizzesState not found');
