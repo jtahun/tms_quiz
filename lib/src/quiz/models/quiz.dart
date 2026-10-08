@@ -15,9 +15,10 @@ class Quiz{
     return Quiz(
       title:json['title'],
       id: json['id']?.toString() ?? '',
-      questions: (json['questions'] as List<dynamic>? ??[]).map((e) => Question.formJson(Map<String,dynamic>.from(e as Map),
-      ),
-      ).toList()
+      questions: (json['questions'] as List<dynamic>? ??[]).map((e) => 
+        Question.formJson(Map<String,dynamic>.from(e as Map))).toList()
     );
   }
-}
+}  
+
+

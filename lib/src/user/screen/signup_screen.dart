@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:tms_quiz/src/core/constants/theme_constants.dart';
 import 'package:tms_quiz/src/core/routing/app_router.gr.dart';
 import 'package:tms_quiz/src/core/widgets/app_bar.dart';
 import 'package:tms_quiz/src/core/widgets/button.dart';
@@ -49,7 +50,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: const Color(0xFFEFEFEF),
+      backgroundColor: ThemeConstants.backgroundColor,
       appBar:  OwnAppBar(
         text: 'Quizfire',
         actions: [
@@ -71,9 +72,7 @@ class _SignupScreenState extends State<SignupScreen> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 48,),
-          OwnTextField(
-            controller: _emailController,label: 'Email', placeholder: 'Enter your email',
-          ),
+          OwnTextField(controller: _emailController,label: 'Email', placeholder: 'Enter your email',),
           const SizedBox(height: 16,),
           OwnTextField(controller: _passwordController, label: 'Password', placeholder: 'Enter your password',),
           const SizedBox(height: 16,),

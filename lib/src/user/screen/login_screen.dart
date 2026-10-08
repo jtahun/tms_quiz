@@ -1,10 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:tms_quiz/src/core/constants/theme_constants.dart';
 import 'package:tms_quiz/src/core/routing/app_router.gr.dart';
 import 'package:tms_quiz/src/core/widgets/app_bar.dart';
 import 'package:tms_quiz/src/core/widgets/button.dart';
 import 'package:tms_quiz/src/core/widgets/text_field.dart';
+import 'package:tms_quiz/src/quiz/state/quizzes_state.dart';
 import 'package:tms_quiz/src/user/state/user_state.dart';
+
 
 
 @RoutePage()
@@ -25,13 +28,18 @@ class _LoginScreenState extends State<LoginScreen> {
     AutoRouter.of(context).replace( SignupRoute());
   }
 
-  void _login() async {
+  Future<void> _login() async {
     try{
       await UserState.of(context).notifier!.login(
       email: _emailController.text,
       password: _passwordController.text,    
       );
+      if (!mounted) return;      
+      await QuizzesState.of(context).loadQuizzes();
+      if(!mounted) return;
+      AutoRouter.of(context).replace(const QuizzesRoute());
     }catch(error){
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -46,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: const Color(0xFFEFEFEF),
+      backgroundColor: ThemeConstants.backgroundColor,
       appBar:  OwnAppBar(
         text: 'Quizfire',
         actions: [

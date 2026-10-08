@@ -3,15 +3,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tms_quiz/src/quiz/models/quiz.dart';
 
 class QuizzesNotifier extends ChangeNotifier {
-  QuizzesNotifier(){
-    loadQuizzes();
-  }
+  //QuizzesNotifier(){
+    //loadQuizzes();
+  //}
 
   List<Quiz> quizzes = [];
 
-  void loadQuizzes() async {
+  Future<void> loadQuizzes() async {
     final collection = await FirebaseFirestore.instance.collection('quizzes').get();
     quizzes = collection.docs.map((e) => Quiz.fromJson(e.data())).toList();
+
+    debugPrint('Firebase: загружено ${quizzes.length} квизов');    
     notifyListeners();    
   }
 }

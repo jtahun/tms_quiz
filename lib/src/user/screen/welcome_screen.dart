@@ -58,9 +58,7 @@ class WelcomeScreen extends StatelessWidget {
                     'Login or create an account to make quiz, take part in challenge and win',
                     style:TextStyle(fontSize: 16),
                   ),
-                  Button(text:'Log in',onPressed:() {
-                    _navigateLogin(context);
-                  },),
+                  Button(text:'Log in',onPressed:() {_navigateLogin(context);},),
                   const SizedBox(height: 16),
                   Button(text:'Create an account', outline: true, onPressed: ()  =>_navigateSignup(context),
                   )

@@ -8,6 +8,7 @@ import 'package:tms_quiz/src/core/widgets/app_bar.dart';
 import 'package:tms_quiz/src/quiz/models/quiz.dart';
 import 'package:tms_quiz/src/quiz/state/quizzes_state.dart';
 import 'package:tms_quiz/src/quiz/widgets/quiz_preview.dart';
+import 'package:tms_quiz/src/user/state/user_state.dart';
 
 @RoutePage()
 class QuizzesScreen extends StatelessWidget {
@@ -17,12 +18,29 @@ class QuizzesScreen extends StatelessWidget {
     AutoRouter.of(context).push(QuizRoute(quiz: quiz));
   }
 
+  void _logOut(BuildContext context) async{
+    await UserState.of(context).notifier!.logOut();
+    if(!context.mounted) return;
+    AutoRouter.of(context).replace(const WelcomeRoute());
+  }
+
   @override
   Widget build(BuildContext context) {
+
+  final quizzes = QuizzesState.of(context).quizzes;
+
+  debugPrint('QuizzesScreen BUILD: ${quizzes.length}');
+
     return  Scaffold(
       backgroundColor: ThemeConstants.backgroundColor,
       appBar: OwnAppBar(
         text: 'Quizzes',
+        actions: [
+          TextButton(
+            onPressed: () => _logOut(context),
+            child: const Text('Log out'),      
+          ),
+        ],
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
@@ -34,7 +52,7 @@ class QuizzesScreen extends StatelessWidget {
               questions: quiz.questions.length, 
               onTap: () => _navigageToQuiz(context, quiz),
               ),
-          )
+            )
           ).toList(),
 
         

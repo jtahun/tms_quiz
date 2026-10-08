@@ -32,7 +32,7 @@ class ProgressBar extends StatelessWidget {
                 duration: const Duration(milliseconds: 300),
                 width:
                     constraints.maxWidth *
-                    (currentItem / (itemsAmount - 1)),
+                    (currentItem / (itemsAmount)),
                 decoration: BoxDecoration(
                   color: ThemeConstants.primaryColor,
                   borderRadius: BorderRadius.circular(2),

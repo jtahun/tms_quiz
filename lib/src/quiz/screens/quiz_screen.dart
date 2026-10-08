@@ -8,6 +8,9 @@ import 'package:tms_quiz/src/quiz/models/quiz_result.dart';
 import 'package:tms_quiz/src/quiz/widgets/progress_bar.dart';
 import 'package:tms_quiz/src/quiz/widgets/question_view.dart';
 
+import 'package:auto_route/auto_route.dart';
+import 'package:tms_quiz/src/core/routing/app_router.gr.dart';
+
 @RoutePage()
 class QuizScreen extends StatefulWidget {
   final Quiz quiz;
@@ -38,7 +41,10 @@ class _QuizScreenState extends State<QuizScreen> {
     //print(quizResult.answers);
 
     if(widget.quiz.questions.length - 1 == pageController.page){
-      return;
+      //return;
+      if (!mounted) return;
+      AutoRouter.of(context).replace(const QuizzesRoute());
+
     }    
 
     pageController.nextPage(
