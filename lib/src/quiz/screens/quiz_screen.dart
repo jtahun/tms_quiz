@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:auto_route/annotations.dart';
+
 import 'package:auto_route/auto_route.dart';
+
+import 'package:tms_quiz/src/user/state/user_state.dart';
 
 import 'package:tms_quiz/src/core/constants/theme_constants.dart';
 import 'package:tms_quiz/src/core/widgets/app_bar.dart';
@@ -35,6 +37,12 @@ class _QuizScreenState extends State<QuizScreen> {
     super.initState();
 
     quizResult = QuizResult(quiz: widget.quiz);
+  }
+
+   void _logOut(BuildContext context) async {
+    await UserState.of(context).notifier!.logOut();
+    if (!context.mounted) return;
+    AutoRouter.of(context).replace(const WelcomeRoute());
   }
 
   void onAnswer(Question question, int answerIndex) {
@@ -80,7 +88,15 @@ class _QuizScreenState extends State<QuizScreen> {
     return Scaffold(
       backgroundColor: ThemeConstants.backgroundColor,
 
-      appBar: OwnAppBar(text: widget.quiz.title),
+      appBar: OwnAppBar(
+        text: widget.quiz.title,
+           actions: [
+            TextButton(
+             onPressed: () => _logOut(context),
+             child: const Text('Log out'),
+          ),
+        ],
+      ),
 
       body: SafeArea(
         child: Padding(

@@ -14,8 +14,7 @@ class AuthGuard extends AutoRouteGuard {
     if(userNotifier.isAuthenticated){
       resolver.next(true);
       return;
-    }
-    print('Not Authenticated');
+    }    
     router.push(const WelcomeRoute());
   }
 }
